@@ -1,6 +1,17 @@
 import { dreams } from "../variables.js";
 const dreamList = document.querySelector(".dream-list");
-console.log(dreamList);
+const nameSpan = document.getElementById("user-name");
+// få in namnet till headern
+nameSpan.innerText = getNameFromLS();
+function getNameFromLS() {
+    let userString = localStorage.getItem("currentUser");
+    if (userString) {
+        return userString;
+    }
+    else {
+        return "";
+    }
+}
 dreams === null || dreams === void 0 ? void 0 : dreams.forEach(dream => {
     const listItem = document.createElement("li");
     listItem.dataset.id = dream.id.toString();
