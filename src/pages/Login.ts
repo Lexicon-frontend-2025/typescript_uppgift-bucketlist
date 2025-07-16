@@ -56,10 +56,10 @@ function togglePasswordVisibility(): void {
     if (passwordInput.type === 'password') {
         passwordInput.type = 'text';
         // Du kan även ändra ikon så här
-        togglePasswordButton.querySelector('img')!.src = '../assets/images/eye-on.png';
+        togglePasswordButton.querySelector('img')!.src = '../assets/images/eye-off.png';
     } else {
         passwordInput.type = 'password';
-        togglePasswordButton.querySelector('img')!.src = '../assets/images/eye-off.png';
+        togglePasswordButton.querySelector('img')!.src = '../assets/images/eye-on.png';
     }
 }
 

@@ -1,5 +1,4 @@
 "use strict";
-// src/pages/login.ts
 // Hämta referenser till DOM-element
 const loginForm = document.querySelector('form');
 const usernameInput = document.getElementById('username');
@@ -50,12 +49,12 @@ function handleLoginSubmit(event) {
 function togglePasswordVisibility() {
     if (passwordInput.type === 'password') {
         passwordInput.type = 'text';
-        // Du kan även ändra ikon här
-        // togglePasswordButton.querySelector('img').src = '../assets/images/eye-open-icon.png';
+        // Du kan även ändra ikon så här
+        togglePasswordButton.querySelector('img').src = '../assets/images/eye-off.png';
     }
     else {
         passwordInput.type = 'password';
-        // togglePasswordButton.querySelector('img').src = '../assets/images/eye-closed-icon.png';
+        togglePasswordButton.querySelector('img').src = '../assets/images/eye-on.png';
     }
 }
 // Lägg till händelselyssnare när DOM är laddad
