@@ -57,11 +57,11 @@ function handleLoginSubmit(event: Event): void {
 function togglePasswordVisibility(): void {
     if (passwordInput.type === 'password') {
         passwordInput.type = 'text';
-        // Du kan även ändra ikon här
-        // togglePasswordButton.querySelector('img').src = '../assets/images/eye-open-icon.png';
+        // Du kan även ändra ikon så här
+        togglePasswordButton.querySelector('img')!.src = '../assets/images/eye-on.png';
     } else {
         passwordInput.type = 'password';
-        // togglePasswordButton.querySelector('img').src = '../assets/images/eye-closed-icon.png';
+        togglePasswordButton.querySelector('img')!.src = '../assets/images/eye-off.png';
     }
 }
 
