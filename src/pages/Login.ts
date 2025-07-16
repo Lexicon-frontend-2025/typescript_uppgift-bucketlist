@@ -1,5 +1,3 @@
-// src/pages/login.ts
-
 // Hämta referenser till DOM-element
 const loginForm = document.querySelector('form') as HTMLFormElement;
 const usernameInput = document.getElementById('username') as HTMLInputElement;
