@@ -1,4 +1,5 @@
 import { Dream } from "../models/dreams.js";
+import { clearChildren } from "../utils/domHelpers.js";
 import { getDreamsFromLocalStorage, getNameFromLocalStorage } from "../utils/storage.js";
 
 const dreamListElement = document.querySelector(".dream-list") as HTMLUListElement;
@@ -33,8 +34,8 @@ function createDreamListItem(dream: Dream): HTMLLIElement {
     return listItem;
 };
 
-function renderDreams(dreams: Dream[]) {
-    dreamListElement.innerHTML = ""; // ta bort tidigare genererade drömmar
+function renderDreams(dreams: Dream[]) { 
+    clearChildren(dreamListElement); // ta bort tidigare genererade drömmar
     dreams.forEach(dream => {
         const listItem = createDreamListItem(dream);
         dreamListElement.appendChild(listItem);

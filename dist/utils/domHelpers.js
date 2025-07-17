@@ -7,17 +7,4 @@ export function clearChildren(parentElement) {
         parentElement.removeChild(parentElement.firstChild);
     }
 }
-/**
- * Skapar ett nytt HTML-element med angiven tagg och valfria CSS-klasser.
- * @param tagName HTML-tagg att skapa (t.ex. 'div', 'p', 'button').
- * @param classNames Valfria CSS-klasser att lägga till.
- * @returns Det skapade HTMLElementet.
- */
-export function createElement(tagName, ...classNames) {
-    const element = document.createElement(tagName);
-    if (classNames.length > 0) {
-        element.classList.add(...classNames);
-    }
-    return element;
-}
 //# sourceMappingURL=domHelpers.js.map

@@ -1,3 +1,4 @@
+import { clearChildren } from "../utils/domHelpers.js";
 import { getDreamsFromLocalStorage, getNameFromLocalStorage } from "../utils/storage.js";
 const dreamListElement = document.querySelector(".dream-list");
 const nameSpan = document.getElementById("user-name");
@@ -27,7 +28,7 @@ function createDreamListItem(dream) {
 }
 ;
 function renderDreams(dreams) {
-    dreamListElement.innerHTML = ""; // ta bort tidigare genererade drömmar
+    clearChildren(dreamListElement); // ta bort tidigare genererade drömmar
     dreams.forEach(dream => {
         const listItem = createDreamListItem(dream);
         dreamListElement.appendChild(listItem);
