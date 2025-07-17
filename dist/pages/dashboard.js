@@ -1,26 +1,70 @@
-import { dreams } from "../variables.js";
-const dreamList = document.querySelector(".dream-list");
+import { dreams as defaultDreams } from "../variables.js";
+const dreamListElement = document.querySelector(".dream-list");
 const nameSpan = document.getElementById("user-name");
-// få in namnet till headern
-nameSpan.innerText = getNameFromLS();
 function getNameFromLS() {
-    let userString = localStorage.getItem("currentUser");
-    if (userString) {
-        return userString;
-    }
-    else {
-        return "";
-    }
+    var _a;
+    return (_a = localStorage.getItem("currentUser")) !== null && _a !== void 0 ? _a : "";
 }
-dreams === null || dreams === void 0 ? void 0 : dreams.forEach(dream => {
+;
+function getDreams() {
+    const LSdreams = localStorage.getItem("dreams");
+    return LSdreams ? JSON.parse(LSdreams) : defaultDreams;
+}
+;
+function createDreamListItem(dream) {
     const listItem = document.createElement("li");
-    listItem.dataset.id = dream.id.toString();
     listItem.className = "dream-list_item";
-    listItem.innerHTML = `
-        <input class="dream-check" type="checkbox" name="dream-check" id="dream-check-${dream.id}" ${dream.checked ? "checked" : null}>
-        <label for="dream-check-${dream.id}">${dream.name}, <span class="dream-theme">${dream.theme}</span></label>
-        <button type="button"><img src="../assets/images/trash_delete.png"></button>
-    `;
-    dreamList.appendChild(listItem);
+    listItem.dataset.id = dream.id.toString();
+    // Checkbox
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.className = "dream-check";
+    checkbox.id = `dream-check-${dream.id}`;
+    checkbox.checked = dream.checked;
+    checkbox.addEventListener("click", () => updateDream(dream));
+    // Label
+    const label = document.createElement("label");
+    label.htmlFor = checkbox.id;
+    label.innerHTML = `${dream.name}, <span class="dream-theme">${dream.theme}</span>`;
+    // Delete button
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.innerHTML = `<img src="../assets/images/trash_delete.png">`;
+    deleteButton.addEventListener("click", () => deleteDream(dream));
+    // Assemble
+    listItem.append(checkbox, label, deleteButton);
+    return listItem;
+}
+;
+function renderDreams(dreams) {
+    dreamListElement.innerHTML = ""; // ta bort tidigare genererade drömmar
+    dreams.forEach(dream => {
+        const listItem = createDreamListItem(dream);
+        dreamListElement.appendChild(listItem);
+    });
+}
+;
+document.addEventListener("DOMContentLoaded", () => {
+    nameSpan.textContent = getNameFromLS();
+    const dreams = getDreams();
+    renderDreams(dreams);
 });
+function deleteDream(dream) {
+    console.log("Delete", dream);
+    const dreams = getDreams();
+    const index = dreams.findIndex(d => d.id === dream.id);
+    dreams.splice(index, 1);
+    localStorage.setItem("dreams", JSON.stringify(dreams));
+    renderDreams(dreams);
+}
+;
+function updateDream(dream) {
+    console.log("Update", dream);
+    const dreams = getDreams();
+    const index = dreams.findIndex(d => d.id === dream.id);
+    dreams[index].checked = !dreams[index].checked;
+    localStorage.setItem("dreams", JSON.stringify(dreams));
+    renderDreams(dreams);
+}
+;
 //# sourceMappingURL=Dashboard.js.map
