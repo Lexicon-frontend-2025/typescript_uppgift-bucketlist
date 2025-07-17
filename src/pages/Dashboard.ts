@@ -1,17 +1,8 @@
 import { Dream } from "../models/dreams.js";
-import { dreams as defaultDreams } from "../variables.js";
+import { getDreams, getNameFromLS } from "../utils/storage.js";
 
 const dreamListElement = document.querySelector(".dream-list") as HTMLUListElement;
 const nameSpan = document.getElementById("user-name") as HTMLSpanElement;
-
-function getNameFromLS(): string {
-    return localStorage.getItem("currentUser") ?? "";
-};
-
-function getDreams(): Dream[] {
-    const LSdreams = localStorage.getItem("dreams");
-    return LSdreams ? JSON.parse(LSdreams) : defaultDreams;
-};
 
 function createDreamListItem(dream: Dream): HTMLLIElement {
     const listItem = document.createElement("li");
