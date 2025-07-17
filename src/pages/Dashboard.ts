@@ -1,5 +1,5 @@
 import { Dream } from "../models/dreams.js";
-import { getDreams, getNameFromLS } from "../utils/storage.js";
+import { getDreamsFromLocalStorage, getNameFromLocalStorage } from "../utils/storage.js";
 
 const dreamListElement = document.querySelector(".dream-list") as HTMLUListElement;
 const nameSpan = document.getElementById("user-name") as HTMLSpanElement;
@@ -42,14 +42,14 @@ function renderDreams(dreams: Dream[]) {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-    nameSpan.textContent = getNameFromLS();
-    const dreams = getDreams();
+    nameSpan.textContent = getNameFromLocalStorage();
+    const dreams = getDreamsFromLocalStorage();
     renderDreams(dreams);
 });
 
 function deleteDream(dream: Dream): void {
     console.log("Delete", dream);
-    const dreams = getDreams();
+    const dreams = getDreamsFromLocalStorage();
     const index = dreams.findIndex(d => d.id === dream.id);
     dreams.splice(index, 1);
     localStorage.setItem("dreams", JSON.stringify(dreams));
@@ -58,7 +58,7 @@ function deleteDream(dream: Dream): void {
 
 function updateDream(dream: Dream): void {
     console.log("Update", dream);
-    const dreams = getDreams();
+    const dreams = getDreamsFromLocalStorage();
     const index = dreams.findIndex(d => d.id === dream.id);
     dreams[index].checked = !dreams[index].checked;
     localStorage.setItem("dreams", JSON.stringify(dreams));

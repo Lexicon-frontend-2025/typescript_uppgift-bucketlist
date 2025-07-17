@@ -1,4 +1,4 @@
-import { getDreams, getNameFromLS } from "../utils/storage.js";
+import { getDreamsFromLocalStorage, getNameFromLocalStorage } from "../utils/storage.js";
 const dreamListElement = document.querySelector(".dream-list");
 const nameSpan = document.getElementById("user-name");
 function createDreamListItem(dream) {
@@ -35,13 +35,13 @@ function renderDreams(dreams) {
 }
 ;
 document.addEventListener("DOMContentLoaded", () => {
-    nameSpan.textContent = getNameFromLS();
-    const dreams = getDreams();
+    nameSpan.textContent = getNameFromLocalStorage();
+    const dreams = getDreamsFromLocalStorage();
     renderDreams(dreams);
 });
 function deleteDream(dream) {
     console.log("Delete", dream);
-    const dreams = getDreams();
+    const dreams = getDreamsFromLocalStorage();
     const index = dreams.findIndex(d => d.id === dream.id);
     dreams.splice(index, 1);
     localStorage.setItem("dreams", JSON.stringify(dreams));
@@ -50,7 +50,7 @@ function deleteDream(dream) {
 ;
 function updateDream(dream) {
     console.log("Update", dream);
-    const dreams = getDreams();
+    const dreams = getDreamsFromLocalStorage();
     const index = dreams.findIndex(d => d.id === dream.id);
     dreams[index].checked = !dreams[index].checked;
     localStorage.setItem("dreams", JSON.stringify(dreams));

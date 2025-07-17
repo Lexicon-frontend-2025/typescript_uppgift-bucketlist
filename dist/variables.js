@@ -1,4 +1,10 @@
-export const themes = ["teknikdrömmar", "vardagsdrömmar", "husdrömmar", "sportdrömmar", "resdrömmar"];
+export const themes = [
+    { value: "teknik", label: "teknikdrömmar" },
+    { value: "vardag", label: "vardagsdrömmar" },
+    { value: "hus", label: "husdrömmar" },
+    { value: "sport", label: "sportdrömmar" },
+    { value: "res", label: "resdrömmar" }
+];
 export let name = "NAMN";
 export const dreams = [{
         id: 1,
