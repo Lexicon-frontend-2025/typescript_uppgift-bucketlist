@@ -6,7 +6,7 @@ export const themes = [
     {value: "hus", label: "husdrömmar"},
     {value: "sport", label: "sportdrömmar"},
     {value: "res", label: "resdrömmar"}
-];
+]; // gjorde om listan från strängar till objekt för att kunna koppla långa namnen till de korta enklare
 
 export let name = "NAMN";
 export const dreams: Dream[] = [{

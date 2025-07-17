@@ -45,12 +45,13 @@ function handleAddDream(event) {
     const currentDreams = getDreamsFromLocalStorage();
     // Skapa ett unikt ID för den nya drömmen
     const newId = currentDreams.length > 0 ? Math.max(...currentDreams.map(d => d.id)) + 1 : 1;
-    // TODO: spara det långa värdet istället för korta
+    // spara det långa värdet istället för korta
+    const theme = themes.filter(t => t.value === dreamTheme);
     // Skapa det nya drömobjektet
     const newDream = {
         id: newId,
         name: dreamDescription,
-        theme: dreamTheme, // Nu sparas det korta värdet (t.ex. "teknik")
+        theme: theme[0].label,
         checked: false
     };
     currentDreams.push(newDream);
